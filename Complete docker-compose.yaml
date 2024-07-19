@@ -1,0 +1,131 @@
+
+#
+#
+#version: '3.8'
+#
+#services:
+#  postgresDB:
+#    image: postgres
+#    container_name: postgresDB
+#    networks:
+#      - spring-postgres-net
+#    environment:
+#      POSTGRES_USER: postgres
+#      POSTGRES_PASSWORD: postgres
+#      POSTGRES_DB: surveyApplication
+#
+#  postgres_spring:
+#    image: piyush12singh/my-survey-new-spring-docker
+#    container_name: postgres_spring
+#    networks:
+#      - spring-postgres-net
+#    ports:
+#      - "9002:8080"
+#
+ # pgadmin:
+ #   image: dpage/pgadmin4
+ #   container_name: pgadmin
+ #   networks:
+ #     - spring-postgres-net
+ #   environment:
+ #     PGADMIN_DEFAULT_EMAIL: user@domain.com
+ #     PGADMIN_DEFAULT_PASSWORD: pgadmin
+ #   ports:
+ #     - "5050:80"
+#
+#networks:
+#  spring-postgres-net:
+#    driver: bridge
+
+
+ 
+
+// ====================================================================================================================================================================================
+
+React + postgres + springAppImage as docker compose file 
+
+
+version: '3.8'
+
+services:
+  postgresDB:
+    image: postgres
+    container_name: postgresDB
+    networks:
+      - spring-postgres-net
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: surveyApplication
+
+  postgres_spring:
+    image: piyush12singh/my-survey-new-spring-docker
+    container_name: postgres_spring
+    networks:
+      - spring-postgres-net
+    ports:
+      - "8080:8080"
+
+  react_app:
+    image: my-react-app  # Replace with your existing React image name
+    container_name: react_app
+    networks:
+      - spring-postgres-net
+    ports:
+      - "3000:3000"
+
+networks:
+  spring-postgres-net:
+    driver: bridge
+
+
+// ================================================================================================================================================================================
+
+React + pgAdmin + postgres + springAppImage as docker compose file 
+
+version: '3.8'
+
+services:
+  postgresDB:
+    image: postgres
+    container_name: postgresDB
+    networks:
+      - spring-postgres-net
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: surveyApplication
+
+  postgres_spring:
+    image: piyush12singh/my-survey-new-spring-docker
+    container_name: postgres_spring
+    networks:
+      - spring-postgres-net
+    ports:
+      - "8080:8080"
+
+  react_app:
+    image: my-react-app  # Replace with your existing React image name
+    container_name: react_app
+    networks:
+      - spring-postgres-net
+    ports:
+      - "3000:3000"
+
+  pgadmin:
+   image: dpage/pgadmin4
+   container_name: pgadmin
+   networks:
+     - spring-postgres-net
+   environment:
+     PGADMIN_DEFAULT_EMAIL: user@domain.com
+     PGADMIN_DEFAULT_PASSWORD: pgadmin
+   ports:
+     - "5050:80"
+
+networks:
+  spring-postgres-net:
+    driver: bridge
+
+
+
